@@ -1,0 +1,23 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { SignUpForm } from "../forms";
+
+export const metadata: Metadata = { title: "Criar conta" };
+
+export default function SignUpPage() {
+  return (
+    <>
+      <h1 className="text-xl font-semibold">Criar conta de escritório</h1>
+      <p className="mb-6 mt-1 text-sm text-muted">
+        Os clientes não precisam de se registar: recebem um convite do seu arquiteto.
+      </p>
+      <SignUpForm />
+      <p className="mt-6 border-t border-line pt-4 text-center text-sm text-muted">
+        Já tem conta?{" "}
+        <Link href="/login" className="font-medium text-accent hover:underline">
+          Entrar
+        </Link>
+      </p>
+    </>
+  );
+}
