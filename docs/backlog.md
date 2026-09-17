@@ -27,26 +27,26 @@ Legenda: ✅ feito · 🔄 em curso · ⬜ por fazer
 
 ---
 
-## Sprint 1 — Fundações (MVP núcleo) 🔄
+## Sprint 1 — Fundações (MVP núcleo) ✅
 
 Objetivo: um escritório gere os seus projetos e o cliente acompanha-os.
 
 | ID | História de utilizador | Estado |
 |----|------------------------|--------|
-| US-01 | Como **arquiteto**, quero criar conta e o meu escritório (nome e país) para começar a usar a plataforma. | 🔄 |
-| US-02 | Como **arquiteto**, quero iniciar e terminar sessão com e-mail e palavra-passe. | 🔄 |
-| US-03 | Como **arquiteto**, quero registar clientes e enviar-lhes um convite por e-mail para acederem ao portal. | 🔄 |
-| US-04 | Como **arquiteto**, quero criar um projeto com as fases do meu país já preenchidas e com datas sugeridas. | 🔄 |
-| US-05 | Como **arquiteto**, quero alterar o estado e as datas de cada fase para manter o cliente informado. | 🔄 |
-| US-06 | Como **cliente**, quero ver os meus projetos, a fase atual e o progresso. | 🔄 |
-| US-07 | Como **arquiteto**, quero definir prazos de entrega (marcos) e marcá-los como cumpridos. | 🔄 |
-| US-08 | Como **cliente**, quero ver os prazos, com destaque para os atrasados e os próximos. | 🔄 |
-| US-09 | Como **cliente/arquiteto**, quero ver a linha temporal com tudo o que aconteceu no projeto. | 🔄 |
-| US-10 | Como **arquiteto**, quero pedir documentos ao cliente (ex.: caderneta predial) com prazo. | 🔄 |
-| US-11 | Como **cliente**, quero enviar os documentos pedidos e ver se foram aprovados ou rejeitados. | 🔄 |
-| US-12 | Como **arquiteto**, quero publicar peças do projeto (plantas, renders, modelos) com controlo de versões. | 🔄 |
-| US-13 | Como **cliente/arquiteto**, quero conversar em tempo real dentro de cada projeto. | 🔄 |
-| US-14 | Como **dono do escritório**, quero convidar outros arquitetos para a minha equipa. | 🔄 |
+| US-01 | Como **arquiteto**, quero criar conta e o meu escritório (nome e país) para começar a usar a plataforma. | ✅ |
+| US-02 | Como **arquiteto**, quero iniciar e terminar sessão com e-mail e palavra-passe. | ✅ |
+| US-03 | Como **arquiteto**, quero registar clientes e enviar-lhes um convite por e-mail para acederem ao portal. | ✅ |
+| US-04 | Como **arquiteto**, quero criar um projeto com as fases do meu país já preenchidas e com datas sugeridas. | ✅ |
+| US-05 | Como **arquiteto**, quero alterar o estado e as datas de cada fase para manter o cliente informado. | ✅ |
+| US-06 | Como **cliente**, quero ver os meus projetos, a fase atual e o progresso. | ✅ |
+| US-07 | Como **arquiteto**, quero definir prazos de entrega (marcos) e marcá-los como cumpridos. | ✅ |
+| US-08 | Como **cliente**, quero ver os prazos, com destaque para os atrasados e os próximos. | ✅ |
+| US-09 | Como **cliente/arquiteto**, quero ver a linha temporal com tudo o que aconteceu no projeto. | ✅ |
+| US-10 | Como **arquiteto**, quero pedir documentos ao cliente (ex.: caderneta predial) com prazo. | ✅ |
+| US-11 | Como **cliente**, quero enviar os documentos pedidos e ver se foram aprovados ou rejeitados. | ✅ |
+| US-12 | Como **arquiteto**, quero publicar peças do projeto (plantas, renders, modelos) com controlo de versões. | ✅ |
+| US-13 | Como **cliente/arquiteto**, quero conversar em tempo real dentro de cada projeto. | ✅ |
+| US-14 | Como **dono do escritório**, quero convidar outros arquitetos para a minha equipa. | ✅ |
 
 ## Sprint 2 — Visualizador
 
@@ -89,3 +89,13 @@ como opção futura num plano premium.
 ### Sprint 1 (início 16/09/2026)
 - Pesquisa das fases por país: ver [fases-projeto.md](fases-projeto.md).
 - Arquitetura: Next.js 16 (App Router) + Supabase (Postgres, Auth, Storage, Realtime) com RLS multi-tenant.
+- Entregue: US-01 a US-14.
+- Verificação:
+  - `supabase/tests/rls_test.sql` passa (isolamento entre escritórios, restrições do cliente, versões, progresso).
+  - Testes manuais no browser como arquiteta e como cliente: painel, fases, cronograma, prazos,
+    envio e aprovação de documentos, conversa, convite por e-mail até à definição da palavra-passe.
+- Dívida técnica / próximos passos:
+  - A tecla Enter no chat foi validada só com um evento sintético.
+  - Faltam notificações por e-mail para mensagens e documentos (US-20).
+  - Faltam testes E2E automatizados (Playwright).
+  - A terminologia PT-BR ainda não está adaptada na interface (US-27).

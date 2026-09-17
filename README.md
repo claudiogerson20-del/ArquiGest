@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ArquiGest
 
-## Getting Started
+SaaS que liga escritórios de arquitetura aos seus clientes (Portugal · Angola · Brasil).
 
-First, run the development server:
+O cliente acompanha o projeto num portal próprio: fases, progresso, prazos, linha temporal,
+documentos e conversa direta com o arquiteto.
+
+- **Backlog e sprints:** [docs/backlog.md](docs/backlog.md)
+- **Fases de projeto por país:** [docs/fases-projeto.md](docs/fases-projeto.md)
+
+## Tecnologias
+
+- Next.js 16 (App Router, Server Actions) + TypeScript + Tailwind CSS 4
+- Supabase: Postgres com RLS multi-tenant, Auth, Storage e Realtime
+
+## Arranque local
+
+Requisitos: Node 20+ e Docker.
 
 ```bash
+npm install
+npx supabase start          # base de dados, auth, storage e e-mail local
+node --env-file=.env.local scripts/seed-demo.mjs   # dados de demonstração (opcional)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Copie `.env.example` para `.env.local` e preencha-o com os valores que o `supabase start` mostra
+   (URL, anon key e service role key).
+2. Abra http://localhost:3000.
+3. Os e-mails (convites, confirmações) ficam no Mailpit: http://127.0.0.1:54324.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Contas de demonstração (palavra-passe `demo12345`):
+- `arquiteta@demo.arquigest`: escritório "Atelier Ribeiro Arquitetos"
+- `cliente@demo.arquigest`: cliente do projeto "Moradia T4 em Cascais"
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Testes
 
-## Learn More
+```bash
+# Isolamento entre escritórios e permissões do cliente (RLS)
+docker exec -i supabase_db_arquigest psql -U postgres -v ON_ERROR_STOP=1 < supabase/tests/rls_test.sql
+npm run lint
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/app/(auth)/          login, registo, recuperar, definir-senha, onboarding
+src/app/(app)/painel     painel (arquiteto ou cliente)
+src/app/(app)/projetos   lista, novo e detalhe (visão geral, linha temporal, prazos, documentos, conversa)
+src/app/(app)/clientes   clientes e convites
+src/app/(app)/equipa     membros do escritório
+src/app/auth/confirm     ligações de e-mail (token_hash / PKCE)
+src/lib/                 clientes Supabase, sessão, convites, formatação
+supabase/migrations/     esquema, RLS, triggers e modelos de fases
+supabase/templates/      e-mails de autenticação em português
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Produção (Supabase na nuvem)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Crie o projeto e aplique as migrações: `npx supabase link` e depois `npx supabase db push`.
+2. Em **Auth → Email Templates**, copie os modelos de `supabase/templates/`. As ligações usam
+   `token_hash` para funcionar em qualquer browser.
+3. Em **Auth → URL Configuration**, defina o Site URL e os Redirect URLs do domínio.
+4. Configure as variáveis de `.env.example` no alojamento (ex.: Vercel).
+5. Para produção, configure um SMTP próprio (ex.: Resend).
