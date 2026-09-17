@@ -30,7 +30,7 @@ export default async function ClientsPage() {
             <ul className="divide-y divide-line">
               {clients.map((c) => (
                 <li key={c.id} className="flex flex-wrap items-center gap-3 px-5 py-4">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-paper text-sm font-semibold">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-elevated text-sm font-semibold">
                     {c.full_name
                       .split(" ")
                       .map((n) => n[0])

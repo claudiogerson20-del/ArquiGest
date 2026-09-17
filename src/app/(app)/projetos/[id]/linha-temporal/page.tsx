@@ -8,9 +8,9 @@ import { getProject } from "../data";
 export const metadata: Metadata = { title: "Linha temporal" };
 
 const barTone = {
-  pending: "bg-stone-300",
-  in_progress: "bg-sky-500",
-  awaiting_client: "bg-amber-500",
+  pending: "bg-line-strong",
+  in_progress: "bg-info",
+  awaiting_client: "bg-warning",
   completed: "bg-accent",
 };
 
@@ -53,12 +53,12 @@ export default async function TimelinePage({ params }: PageProps<"/projetos/[id]
                 <div key={p.id} className="grid grid-cols-[200px_1fr] items-center gap-3 py-1.5">
                   <div className="truncate text-sm" title={p.name}>
                     {p.name}
-                    <span className="block text-xs text-muted">{PHASE_STATUS[p.status].label}</span>
+                    <span className="label-tech block">{PHASE_STATUS[p.status].label}</span>
                   </div>
-                  <div className="relative h-6 rounded bg-paper">
+                  <div className="relative h-6 rounded-sm bg-elevated">
                     {p.start_date && p.due_date && (
                       <div
-                        className={cn("absolute top-1 h-4 rounded", barTone[p.status])}
+                        className={cn("absolute top-1 h-4 rounded-xs", barTone[p.status])}
                         style={{
                           left: `${pos(p.start_date)}%`,
                           width: `${Math.max(pos(p.due_date) - pos(p.start_date), 0.8)}%`,
@@ -67,7 +67,7 @@ export default async function TimelinePage({ params }: PageProps<"/projetos/[id]
                       />
                     )}
                     {todayPos !== null && (
-                      <div className="absolute inset-y-0 w-px bg-red-500" style={{ left: `${todayPos}%` }} />
+                      <div className="absolute inset-y-0 w-px bg-danger-soft0" style={{ left: `${todayPos}%` }} />
                     )}
                   </div>
                 </div>
@@ -81,7 +81,7 @@ export default async function TimelinePage({ params }: PageProps<"/projetos/[id]
                         key={m.id}
                         className={cn(
                           "absolute top-1.5 size-3 -translate-x-1/2 rotate-45",
-                          m.done_at ? "bg-emerald-600" : "bg-ink",
+                          m.done_at ? "bg-success" : "bg-ink",
                         )}
                         style={{ left: `${pos(m.due_date)}%` }}
                         title={`${m.title} — ${formatDate(m.due_date)}`}
@@ -97,7 +97,7 @@ export default async function TimelinePage({ params }: PageProps<"/projetos/[id]
                   </span>
                 ))}
                 <span className="inline-flex items-center gap-1.5">
-                  <span className="h-3 w-px bg-red-500" /> Hoje
+                  <span className="h-3 w-px bg-danger-soft0" /> Hoje
                 </span>
               </div>
             </div>

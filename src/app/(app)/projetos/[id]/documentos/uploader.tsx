@@ -92,7 +92,7 @@ export function UploadButton({
         {busy ? "A enviar…" : label}
         <input ref={input} type="file" multiple className="sr-only" onChange={onChange} disabled={busy} />
       </label>
-      {error && <p className="text-xs text-red-700">{error}</p>}
+      {error && <p className="text-xs text-danger">{error}</p>}
     </div>
   );
 }
@@ -174,11 +174,11 @@ export function StaffUploader({
         </Select>
       </Field>
       <label className="flex items-center gap-2 text-sm">
-        <input type="checkbox" name="visible" defaultChecked className="size-4 accent-accent" />
+        <input type="checkbox" name="visible" defaultChecked className="size-4 accent-[var(--accent)]" />
         Visível para o cliente
       </label>
-      {message?.error && <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{message.error}</p>}
-      {message?.ok && <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-800">{message.ok}</p>}
+      {message?.error && <p className="rounded-lg bg-danger-soft px-3 py-2 text-sm text-danger">{message.error}</p>}
+      {message?.ok && <p className="rounded-lg bg-success-soft px-3 py-2 text-sm text-success">{message.ok}</p>}
       <Button type="submit" disabled={busy}>
         {busy ? "A publicar…" : "Publicar"}
       </Button>

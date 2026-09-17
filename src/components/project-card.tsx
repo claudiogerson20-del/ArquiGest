@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { Badge, Progress } from "@/components/ui";
 import { PROJECT_STATUS, daysUntil, formatDate } from "@/lib/format";
 import type { Database } from "@/lib/database.types";
@@ -29,34 +29,42 @@ export function ProjectCard({ project, showClient }: { project: ProjectCardData;
   return (
     <Link
       href={`/projetos/${project.id}`}
-      className="group flex flex-col rounded-xl border border-line bg-white p-5 transition hover:border-stone-300 hover:shadow-sm"
+      className="group flex flex-col rounded-xl border border-line bg-surface p-6 transition-[border-color,box-shadow,transform] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[var(--shadow-card)]"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          {project.code && <p className="text-xs font-medium text-muted">{project.code}</p>}
-          <h3 className="truncate font-semibold group-hover:text-accent">{project.name}</h3>
+          <p className="label-tech">{project.code || "sem referência"}</p>
+          <h3 className="mt-1.5 font-display text-2xl leading-tight tracking-tight">{project.name}</h3>
         </div>
-        <Badge tone={status.tone}>{status.label}</Badge>
+        <ArrowUpRight
+          className="size-5 shrink-0 text-faint transition-colors duration-200 group-hover:text-accent"
+          aria-hidden
+        />
       </div>
-      {showClient && project.clients && (
-        <p className="mt-1 text-sm text-muted">{project.clients.full_name}</p>
-      )}
-      {project.location && (
-        <p className="mt-1 flex items-center gap-1 text-sm text-muted">
-          <MapPin className="size-3.5" aria-hidden /> {project.location}
-        </p>
-      )}
-      <div className="mt-5">
-        <div className="mb-1.5 flex items-center justify-between text-xs">
-          <span className="font-medium">{phase?.name ?? "Sem fases"}</span>
-          <span className="text-muted">{project.progress}%</span>
+
+      <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted">
+        {showClient && project.clients && <span>{project.clients.full_name}</span>}
+        {project.location && (
+          <span className="inline-flex items-center gap-1">
+            <MapPin className="size-3.5" aria-hidden /> {project.location}
+          </span>
+        )}
+      </div>
+
+      <div className="mt-auto pt-8">
+        <div className="mb-2 flex items-center justify-between gap-3 text-xs">
+          <span className="font-medium text-ink">{phase?.name ?? "Sem fases"}</span>
+          <span className="font-mono tabular-nums text-muted">{project.progress}%</span>
         </div>
         <Progress value={project.progress} />
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <p className={`text-xs ${late ? "font-medium text-danger" : "text-muted"}`}>
+            Entrega {formatDate(project.due_date)}
+            {late && " · atrasado"}
+          </p>
+          <Badge tone={status.tone}>{status.label}</Badge>
+        </div>
       </div>
-      <p className={`mt-3 text-xs ${late ? "font-medium text-red-700" : "text-muted"}`}>
-        Entrega prevista: {formatDate(project.due_date)}
-        {late && " · atrasado"}
-      </p>
     </Link>
   );
 }

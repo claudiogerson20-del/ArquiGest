@@ -7,7 +7,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <Link href="/" className="mb-8">
         <Logo />
       </Link>
-      <div className="w-full max-w-sm rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-8">
+      <div className="w-full max-w-sm rounded-xl border border-line bg-surface p-7 shadow-[var(--shadow-card)] sm:p-9">
         {children}
       </div>
     </main>

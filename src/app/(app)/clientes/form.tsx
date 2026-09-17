@@ -30,7 +30,7 @@ export function ClientForm({ taxLabel }: { taxLabel: string }) {
         <Input name="address" />
       </Field>
       <label className="flex items-center gap-2 text-sm">
-        <input type="checkbox" name="invite" defaultChecked className="size-4 accent-accent" />
+        <input type="checkbox" name="invite" defaultChecked className="size-4 accent-[var(--accent)]" />
         Enviar convite de acesso ao portal
       </label>
       <FormMessage state={state} />

@@ -36,7 +36,7 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/projeto
           </ButtonLink>
         }
       />
-      <div className="mb-5 flex flex-wrap gap-2">
+      <div className="mb-6 flex flex-wrap gap-2">
         <FilterLink href="/projetos" active={!filter}>
           Todos
         </FilterLink>
@@ -66,8 +66,10 @@ function FilterLink({ href, active, children }: { href: string; active: boolean;
     <Link
       href={href}
       className={cn(
-        "rounded-full border px-3 py-1 text-sm",
-        active ? "border-ink bg-ink text-white" : "border-line bg-white text-muted hover:text-ink",
+        "cursor-pointer rounded-full border px-3.5 py-1.5 text-sm transition-colors duration-200",
+        active
+          ? "border-invert bg-invert text-on-invert"
+          : "border-line bg-surface text-muted hover:border-line-strong hover:text-ink",
       )}
     >
       {children}

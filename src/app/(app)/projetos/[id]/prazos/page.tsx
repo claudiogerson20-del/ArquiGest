@@ -86,7 +86,7 @@ export default async function MilestonesPage({ params }: PageProps<"/projetos/[i
             <ul className="divide-y divide-line">
               {done.map((m) => (
                 <li key={m.id} className="flex items-center gap-3 px-5 py-3 text-sm">
-                  <Check className="size-4 text-emerald-600" aria-hidden />
+                  <Check className="size-4 text-success" aria-hidden />
                   <span className={cn("flex-1 text-muted line-through")}>{m.title}</span>
                   <span className="text-xs text-muted">
                     previsto {formatDate(m.due_date)} · cumprido {formatDate(m.done_at)}

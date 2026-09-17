@@ -28,12 +28,12 @@ export default async function ProjectLayout({ children, params }: LayoutProps<"/
         <ChevronLeft className="size-4" aria-hidden /> {isStaff ? "Projetos" : "Os meus projetos"}
       </Link>
 
-      <header className="mb-6 rounded-xl border border-line bg-white p-5">
+      <header className="mb-8 rounded-xl border border-line bg-surface p-6 shadow-[var(--shadow-card)]">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
-            {project.code && <p className="text-xs font-medium text-muted">{project.code}</p>}
-            <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
-            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted">
+            <p className="label-tech">{project.code || "sem referência"}</p>
+            <h1 className="mt-1.5 font-display text-3xl leading-tight tracking-tight sm:text-4xl">{project.name}</h1>
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted">
               {isStaff ? (
                 <span className="inline-flex items-center gap-1">
                   <UserRound className="size-3.5" aria-hidden /> {project.clients?.full_name}
@@ -53,25 +53,25 @@ export default async function ProjectLayout({ children, params }: LayoutProps<"/
         </div>
         <div className="mt-5 grid gap-4 sm:grid-cols-[1fr_auto_auto] sm:items-end">
           <div>
-            <div className="mb-1.5 flex justify-between text-xs">
-              <span className="font-medium">Progresso</span>
-              <span className="text-muted">{project.progress}%</span>
+            <div className="mb-2 flex justify-between text-xs">
+              <span className="label-tech">Progresso</span>
+              <span className="font-mono tabular-nums text-muted">{project.progress}%</span>
             </div>
             <Progress value={project.progress} />
           </div>
           <p className="text-sm">
-            <span className="text-muted">Início </span>
-            {formatDate(project.start_date)}
+            <span className="label-tech mr-1.5">Início</span>
+            <span className="font-mono tabular-nums">{formatDate(project.start_date)}</span>
           </p>
           <p className="text-sm">
-            <span className="text-muted">Entrega </span>
-            <strong>{formatDate(project.due_date)}</strong>
+            <span className="label-tech mr-1.5">Entrega</span>
+            <span className="font-mono font-medium tabular-nums">{formatDate(project.due_date)}</span>
           </p>
         </div>
       </header>
 
       <ProjectTabs tabs={tabs} />
-      <div className="mt-6">{children}</div>
+      <div className="mt-8">{children}</div>
     </>
   );
 }

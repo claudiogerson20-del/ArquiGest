@@ -34,7 +34,7 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
           title="Fases do projeto"
           description={isStaff ? "Atualize o estado de cada fase — o cliente vê as alterações de imediato." : undefined}
         />
-        <ol className="px-5 py-4">
+        <ol className="px-6 py-5">
           {phases?.map((phase, i) => {
             const st = PHASE_STATUS[phase.status];
             const done = phase.status === "completed";
@@ -51,9 +51,9 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
                 <span
                   className={cn(
                     "z-10 flex size-7 shrink-0 items-center justify-center rounded-full border-2 text-xs font-semibold",
-                    done && "border-accent bg-accent text-white",
-                    current && "border-accent bg-white text-accent",
-                    !done && !current && "border-line bg-white text-muted",
+                    done && "border-accent bg-accent text-on-accent",
+                    current && "border-accent bg-surface text-accent",
+                    !done && !current && "border-line bg-surface text-muted",
                   )}
                 >
                   {done ? <Check className="size-3.5" aria-hidden /> : phase.position}
@@ -79,8 +79,8 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
 
       <div className="flex flex-col gap-6">
         {project.description && (
-          <Card className="p-5">
-            <h2 className="font-semibold">Sobre o projeto</h2>
+          <Card className="p-6">
+            <h2 className="font-display text-xl tracking-tight">Sobre o projeto</h2>
             <p className="mt-2 whitespace-pre-line text-sm text-muted">{project.description}</p>
             {project.typology && <p className="mt-3 text-xs text-muted">Tipologia: {project.typology}</p>}
           </Card>
@@ -102,7 +102,7 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
                 return (
                   <li key={m.id} className="flex items-center justify-between gap-2 px-5 py-3 text-sm">
                     <span>{m.title}</span>
-                    <span className={cn("shrink-0 text-xs", d < 0 ? "font-medium text-red-700" : "text-muted")}>
+                    <span className={cn("shrink-0 text-xs", d < 0 ? "font-medium text-danger" : "text-muted")}>
                       {formatDate(m.due_date)}
                     </span>
                   </li>

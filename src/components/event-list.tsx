@@ -35,23 +35,28 @@ function iconFor(type: string) {
 export function EventList({ events, compact = false }: { events: EventItem[]; compact?: boolean }) {
   if (!events.length) return <p className="text-sm text-muted">Ainda sem atividade.</p>;
   return (
-    <ol className="space-y-4">
-      {events.map((e) => {
+    <ol className="relative">
+      {events.map((e, i) => {
         const Icon = iconFor(e.type);
         const tone =
           e.type === "request_rejected"
-            ? "bg-red-50 text-red-700"
+            ? "border-danger/30 bg-danger-soft text-danger"
             : e.type === "phase_completed" || e.type === "request_approved" || e.type === "milestone_done"
-              ? "bg-emerald-50 text-emerald-700"
-              : "bg-paper text-muted";
+              ? "border-success/30 bg-success-soft text-success"
+              : "border-line bg-elevated text-muted";
         return (
-          <li key={e.id} className="flex gap-3">
-            <span className={cn("flex size-8 shrink-0 items-center justify-center rounded-full", tone)}>
+          <li key={e.id} className="relative flex gap-4 pb-5 last:pb-0">
+            {i < events.length - 1 && (
+              <span className="absolute bottom-0 left-4 top-9 w-px bg-line" aria-hidden />
+            )}
+            <span
+              className={cn("flex size-8 shrink-0 items-center justify-center rounded-full border", tone)}
+            >
               <Icon className="size-4" aria-hidden />
             </span>
-            <div className="min-w-0">
-              <p className="text-sm">{e.title}</p>
-              <p className="text-xs text-muted" title={formatDateTime(e.created_at)}>
+            <div className="min-w-0 pt-1">
+              <p className="text-sm text-ink">{e.title}</p>
+              <p className="mt-0.5 font-mono text-xs text-faint" title={formatDateTime(e.created_at)}>
                 {compact ? timeAgo(e.created_at) : formatDateTime(e.created_at)}
                 {e.actor?.full_name && ` · ${e.actor.full_name}`}
               </p>

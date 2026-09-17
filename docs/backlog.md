@@ -48,6 +48,16 @@ Objetivo: um escritório gere os seus projetos e o cliente acompanha-os.
 | US-13 | Como **cliente/arquiteto**, quero conversar em tempo real dentro de cada projeto. | ✅ |
 | US-14 | Como **dono do escritório**, quero convidar outros arquitetos para a minha equipa. | ✅ |
 
+## Sprint 1.5 — Identidade visual ✅
+
+| ID | História | Estado |
+|----|----------|--------|
+| US-28 | Como **utilizador**, quero uma interface que transmita a elegância da arquitetura, com tipografia editorial e tokens semânticos. | ✅ |
+| US-29 | Como **utilizador**, quero modo escuro (claro/escuro/sistema), guardado entre sessões e sem cintilação ao carregar. | ✅ |
+| US-25b | Como **utilizador**, quero contraste conforme (texto ≥4,5:1, contornos ≥3:1) e foco visível nos dois modos. | ✅ |
+
+Ver [design-system.md](design-system.md).
+
 ## Sprint 2 — Visualizador
 
 | ID | História | Estado |
@@ -99,3 +109,9 @@ como opção futura num plano premium.
   - Faltam notificações por e-mail para mensagens e documentos (US-20).
   - Faltam testes E2E automatizados (Playwright).
   - A terminologia PT-BR ainda não está adaptada na interface (US-27).
+
+### Sprint 1.5 (17/09/2026)
+- Redesenho completo da interface: direção editorial/arquitetónica, tokens semânticos, tipografia
+  Instrument Serif + Inter + JetBrains Mono, modo escuro com seletor de três estados.
+- Contrastes medidos no browser nos dois modos; token `control` criado para cumprir o critério
+  WCAG 1.4.11 nos contornos de campos.

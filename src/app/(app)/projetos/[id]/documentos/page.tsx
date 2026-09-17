@@ -61,7 +61,7 @@ export default async function DocumentsPage({ params }: PageProps<"/projetos/[id
                         {r.description && <p className="mt-0.5 text-sm text-muted">{r.description}</p>}
                         {r.due_date && <p className="mt-0.5 text-xs text-muted">Prazo: {formatDate(r.due_date)}</p>}
                         {r.review_note && (
-                          <p className="mt-2 rounded-lg bg-paper px-3 py-2 text-sm">
+                          <p className="mt-2 rounded-lg bg-elevated px-3 py-2 text-sm">
                             <span className="font-medium">Nota do arquiteto:</span> {r.review_note}
                           </p>
                         )}

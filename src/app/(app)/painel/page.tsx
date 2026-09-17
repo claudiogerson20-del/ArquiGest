@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { addDays, formatISO } from "date-fns";
 import { Plus } from "lucide-react";
-import { Badge, ButtonLink, Card, CardHeader, EmptyState, PageHeader } from "@/components/ui";
+import { Badge, ButtonLink, Card, CardHeader, EmptyState, PageHeader, Stat } from "@/components/ui";
 import { PROJECT_CARD_SELECT, ProjectCard } from "@/components/project-card";
 import { createClient } from "@/lib/supabase/server";
 import { requireSession } from "@/lib/session";
@@ -65,7 +65,7 @@ export default async function DashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <section className="lg:col-span-2">
-          <h2 className="mb-3 font-semibold">{isStaff ? "Projetos ativos" : "Os meus projetos"}</h2>
+          <h2 className="mb-4 font-display text-2xl tracking-tight">{isStaff ? "Projetos ativos" : "Os meus projetos"}</h2>
           {projects?.length ? (
             <div className="grid gap-4 sm:grid-cols-2">
               {projects.map((p) => (
@@ -96,10 +96,10 @@ export default async function DashboardPage() {
                   const d = daysUntil(m.due_date);
                   return (
                     <li key={m.id}>
-                      <Link href={`/projetos/${m.project_id}/prazos`} className="block px-5 py-3 hover:bg-paper">
+                      <Link href={`/projetos/${m.project_id}/prazos`} className="block px-5 py-3 hover:bg-elevated">
                         <p className="text-sm font-medium">{m.title}</p>
                         <p className="text-xs text-muted">{m.projects?.name}</p>
-                        <p className={`mt-1 text-xs ${d < 0 ? "font-medium text-red-700" : d <= 7 ? "text-amber-700" : "text-muted"}`}>
+                        <p className={`mt-1 text-xs ${d < 0 ? "font-medium text-danger" : d <= 7 ? "text-warning" : "text-muted"}`}>
                           {formatDate(m.due_date)} · {d < 0 ? `${-d} dia(s) em atraso` : d === 0 ? "hoje" : `faltam ${d} dia(s)`}
                         </p>
                       </Link>
@@ -118,7 +118,7 @@ export default async function DashboardPage() {
               <ul className="divide-y divide-line">
                 {requests.map((r) => (
                   <li key={r.id}>
-                    <Link href={`/projetos/${r.project_id}/documentos`} className="block px-5 py-3 hover:bg-paper">
+                    <Link href={`/projetos/${r.project_id}/documentos`} className="block px-5 py-3 hover:bg-elevated">
                       <div className="flex items-center justify-between gap-2">
                         <p className="text-sm font-medium">{r.title}</p>
                         <Badge tone={REQUEST_STATUS[r.status].tone}>{REQUEST_STATUS[r.status].label}</Badge>
@@ -141,11 +141,4 @@ export default async function DashboardPage() {
   );
 }
 
-function Stat({ label, value, alert }: { label: string; value: number; alert?: boolean }) {
-  return (
-    <div className="rounded-xl border border-line bg-white px-4 py-3">
-      <p className="text-xs text-muted">{label}</p>
-      <p className={`mt-1 text-2xl font-semibold ${alert ? "text-red-700" : ""}`}>{value}</p>
-    </div>
-  );
-}
+

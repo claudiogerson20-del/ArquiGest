@@ -34,7 +34,7 @@ export function MilestoneForm({ projectId, phases }: { projectId: string; phases
         <Textarea name="description" rows={2} />
       </Field>
       <label className="flex items-center gap-2 text-sm">
-        <input type="checkbox" name="visible_to_client" defaultChecked className="size-4 accent-accent" />
+        <input type="checkbox" name="visible_to_client" defaultChecked className="size-4 accent-[var(--accent)]" />
         Visível para o cliente
       </label>
       <FormMessage state={state} />

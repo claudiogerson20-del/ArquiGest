@@ -84,7 +84,7 @@ export function Chat({
 
   return (
     <div className="flex h-[65vh] min-h-[420px] flex-col">
-      <div className="flex-1 space-y-3 overflow-y-auto bg-paper/50 px-4 py-5">
+      <div className="flex-1 space-y-3 overflow-y-auto bg-bg px-4 py-5">
         {messages.length === 0 && (
           <p className="py-10 text-center text-sm text-muted">
             Ainda não há mensagens. Escreva a primeira — a conversa fica guardada no projeto.
@@ -96,25 +96,25 @@ export function Chat({
           return (
             <div key={m.id} className={cn("flex flex-col", mine ? "items-end" : "items-start")}>
               {showName && (
-                <span className="mb-1 px-1 text-xs font-medium text-muted">
+                <span className="label-tech mb-1 px-1">
                   {m.sender?.full_name || m.sender?.email || "Utilizador"}
                 </span>
               )}
               <div
                 className={cn(
-                  "max-w-[80%] whitespace-pre-wrap break-words rounded-2xl px-4 py-2 text-sm",
-                  mine ? "rounded-br-sm bg-ink text-white" : "rounded-bl-sm border border-line bg-white",
+                  "max-w-[80%] whitespace-pre-wrap break-words rounded-xl px-4 py-2.5 text-sm leading-relaxed shadow-[var(--shadow-card)]",
+                  mine ? "rounded-br-sm bg-invert text-on-invert" : "rounded-bl-sm border border-line bg-surface",
                 )}
               >
                 {m.body}
               </div>
-              <span className="mt-0.5 px-1 text-[11px] text-muted">{formatDateTime(m.created_at)}</span>
+              <span className="mt-1 px-1 font-mono text-[11px] text-faint">{formatDateTime(m.created_at)}</span>
             </div>
           );
         })}
         <div ref={bottom} />
       </div>
-      <form onSubmit={send} className="flex items-end gap-2 border-t border-line bg-white p-3">
+      <form onSubmit={send} className="flex items-end gap-2 border-t border-line bg-surface p-3.5">
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
@@ -128,13 +128,13 @@ export function Chat({
           maxLength={5000}
           placeholder="Escreva uma mensagem… (Enter para enviar, Shift+Enter para nova linha)"
           aria-label="Mensagem"
-          className="max-h-40 min-h-10 flex-1 resize-none rounded-lg border border-line px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+          className="max-h-40 min-h-11 flex-1 resize-none rounded-lg border border-control bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none focus:ring-4 focus:ring-accent/15"
         />
         <Button type="submit" disabled={sending || !body.trim()} aria-label="Enviar">
           <SendHorizontal className="size-4" aria-hidden />
         </Button>
       </form>
-      {error && <p className="bg-white px-3 pb-2 text-xs text-red-700">{error}</p>}
+      {error && <p role="alert" className="bg-surface px-3.5 pb-2.5 text-xs text-danger">{error}</p>}
     </div>
   );
 }

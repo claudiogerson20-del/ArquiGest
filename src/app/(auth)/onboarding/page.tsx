@@ -10,7 +10,7 @@ export default async function OnboardingPage() {
   if (session.org) redirect("/painel");
   return (
     <>
-      <h1 className="text-xl font-semibold">O seu escritório</h1>
+      <h1 className="font-display text-3xl leading-tight tracking-tight">O seu escritório</h1>
       <p className="mb-6 mt-1 text-sm text-muted">
         O país define as fases de projeto, a terminologia e a moeda.
       </p>

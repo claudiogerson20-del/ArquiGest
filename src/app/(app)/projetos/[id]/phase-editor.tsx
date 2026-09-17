@@ -22,7 +22,7 @@ export function PhaseEditor({ projectId, phase }: { projectId: string; phase: Ph
   }
 
   return (
-    <form action={action} className="mt-3 grid gap-2 rounded-lg bg-paper p-3 sm:grid-cols-3">
+    <form action={action} className="mt-3 grid gap-2 rounded-lg bg-elevated p-3 sm:grid-cols-3">
       <label className="flex flex-col gap-1 text-xs text-muted">
         Estado
         <Select name="status" defaultValue={phase.status} className="h-9">
