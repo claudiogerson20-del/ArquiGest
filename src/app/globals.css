@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 /*
-  ArquiGest — sistema de design "editorial/arquitetónico".
-  Neutros de betão e marfim, acento terracota, linhas finas.
-  Todas as cores são tokens semânticos: mudam sozinhas no modo escuro.
+  ArquiGest — sistema de design.
+  Materiais: betão (cinzas frios, estrutura) + madeira/barro (quentes, acento).
+  Densidade de aplicação profissional: escala 4/8/12/16/24/32.
+  Cores sempre por token semântico — o modo escuro resolve-se sozinho.
 */
 
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-elevated: var(--elevated);
+  --color-sunken: var(--sunken);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
@@ -18,6 +20,7 @@
   --color-control: var(--control);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-hover: var(--accent-hover);
   --color-on-accent: var(--on-accent);
   --color-invert: var(--invert);
   --color-on-invert: var(--on-invert);
@@ -30,111 +33,120 @@
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), Georgia, serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
 
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 
-  --shadow-card: 0 1px 2px rgb(23 22 20 / 0.04), 0 8px 24px -16px rgb(23 22 20 / 0.18);
-  --shadow-pop: 0 12px 40px -12px rgb(23 22 20 / 0.28);
+  --shadow-card: 0 1px 1px rgb(12 13 13 / 0.03), 0 1px 3px -1px rgb(12 13 13 / 0.06);
+  --shadow-raised: 0 1px 2px rgb(12 13 13 / 0.06), 0 8px 20px -12px rgb(12 13 13 / 0.22);
+  --shadow-pop: 0 12px 32px -12px rgb(12 13 13 / 0.3);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ---------------------------------------------------------------- claro */
+/* ------------------------------------------------------- claro (betão) */
 :root {
   color-scheme: light;
 
-  --bg: #f4f2ee; /* betão claro */
-  --surface: #fbfaf8; /* marfim */
-  --elevated: #eeebe4;
-  --ink: #1a1917; /* grafite quente */
-  --muted: #6a6660; /* 5.4:1 sobre --surface */
-  --faint: #6c675f; /* metadados — 4.8:1 sobre betão e 5.4:1 sobre marfim */
-  --line: #e3e0d9;
-  --line-strong: #cbc6ba;
-  --control: #8d887f; /* contorno de campos — 3.1:1 sobre marfim (WCAG 1.4.11) */
-  --accent: #a04b22; /* terracota — 5.6:1 sobre marfim */
-  --accent-soft: #f1e4dc;
+  --bg: #eeeeec; /* betão à vista */
+  --surface: #fdfdfc;
+  --elevated: #f2f2f0;
+  --sunken: #e6e6e3;
+  --ink: #16181a; /* grafite frio */
+  --muted: #61656a; /* 6.4:1 sobre surface */
+  --faint: #62666b; /* metadados — 4.7:1 sobre elevated */
+  --line: #e0e0dd;
+  --line-strong: #c9c9c5;
+  --control: #8b8d90;
+  --accent: #9a4a26; /* barro cozido */
+  --accent-hover: #833d1f;
+  --accent-soft: #f2e5de;
   --on-accent: #ffffff;
-  --invert: #1a1917;
-  --on-invert: #fbfaf8;
-  --success: #2f6b4b;
-  --success-soft: #e2efe7;
-  --warning: #85560f;
-  --warning-soft: #f7ebd7;
-  --danger: #a8281c;
-  --danger-soft: #f8e3e0;
-  --info: #2a5678;
-  --info-soft: #e2ecf4;
+  --invert: #16181a;
+  --on-invert: #fdfdfc;
+  --success: #2c6a49;
+  --success-soft: #e0eee7;
+  --warning: #7f5410;
+  --warning-soft: #f6ebd8;
+  --danger: #a5271b;
+  --danger-soft: #f8e3e1;
+  --info: #2a5473;
+  --info-soft: #e3ebf2;
 }
 
-/* ---------------------------------------------------------------- escuro */
+/* ------------------------------------------------------ escuro (grafite) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --bg: #0e0e0f;
-    --surface: #17171a;
-    --elevated: #202024;
-    --ink: #f3f1ed;
-    --muted: #a4a09a; /* 7.1:1 sobre --surface */
-    --faint: #918d87; /* metadados — 5.3:1 sobre a superfície */
-    --line: #2a2a2f;
-    --line-strong: #3b3b42;
-    --control: #6d6d74; /* contorno de campos — 3.1:1 sobre a superfície */
-    --accent: #e4926a; /* terracota clara — 7.8:1 sobre --surface */
-    --accent-soft: #3a2519;
-    --on-accent: #1a1917;
-    --invert: #f3f1ed;
-    --on-invert: #17171a;
-    --success: #74c79c;
-    --success-soft: #163327;
-    --warning: #e3b263;
-    --warning-soft: #372714;
-    --danger: #f08a7f;
-    --danger-soft: #3c1a17;
-    --info: #86b7dd;
-    --info-soft: #14283a;
+    --bg: #0b0c0d;
+    --surface: #131416;
+    --elevated: #1b1d1f;
+    --sunken: #0f1011;
+    --ink: #f0f0ee;
+    --muted: #a0a4a9;
+    --faint: #8e9297;
+    --line: #26282b;
+    --line-strong: #35383c;
+    --control: #6b6f74;
+    --accent: #e08a5b; /* madeira/barro claro */
+    --accent-hover: #eda077;
+    --accent-soft: #33200f;
+    --on-accent: #16181a;
+    --invert: #f0f0ee;
+    --on-invert: #131416;
+    --success: #6ec49b;
+    --success-soft: #12301f;
+    --warning: #e0b066;
+    --warning-soft: #33250f;
+    --danger: #ef8a7e;
+    --danger-soft: #381815;
+    --info: #86b6dd;
+    --info-soft: #12283a;
 
-    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px -18px rgb(0 0 0 / 0.8);
-    --shadow-pop: 0 16px 48px -16px rgb(0 0 0 / 0.75);
+    --shadow-card: 0 1px 1px rgb(0 0 0 / 0.4), 0 1px 3px -1px rgb(0 0 0 / 0.5);
+    --shadow-raised: 0 2px 4px rgb(0 0 0 / 0.5), 0 10px 24px -14px rgb(0 0 0 / 0.9);
+    --shadow-pop: 0 16px 40px -16px rgb(0 0 0 / 0.8);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #0e0e0f;
-  --surface: #17171a;
-  --elevated: #202024;
-  --ink: #f3f1ed;
-  --muted: #a4a09a;
-  --faint: #918d87;
-  --line: #2a2a2f;
-  --line-strong: #3b3b42;
-  --control: #6d6d74;
-  --accent: #e4926a;
-  --accent-soft: #3a2519;
-  --on-accent: #1a1917;
-  --invert: #f3f1ed;
-  --on-invert: #17171a;
-  --success: #74c79c;
-  --success-soft: #163327;
-  --warning: #e3b263;
-  --warning-soft: #372714;
-  --danger: #f08a7f;
-  --danger-soft: #3c1a17;
-  --info: #86b7dd;
-  --info-soft: #14283a;
+  --bg: #0b0c0d;
+  --surface: #131416;
+  --elevated: #1b1d1f;
+  --sunken: #0f1011;
+  --ink: #f0f0ee;
+  --muted: #a0a4a9;
+  --faint: #8e9297;
+  --line: #26282b;
+  --line-strong: #35383c;
+  --control: #6b6f74;
+  --accent: #e08a5b;
+  --accent-hover: #eda077;
+  --accent-soft: #33200f;
+  --on-accent: #16181a;
+  --invert: #f0f0ee;
+  --on-invert: #131416;
+  --success: #6ec49b;
+  --success-soft: #12301f;
+  --warning: #e0b066;
+  --warning-soft: #33250f;
+  --danger: #ef8a7e;
+  --danger-soft: #381815;
+  --info: #86b6dd;
+  --info-soft: #12283a;
 
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px -18px rgb(0 0 0 / 0.8);
-  --shadow-pop: 0 16px 48px -16px rgb(0 0 0 / 0.75);
+  --shadow-card: 0 1px 1px rgb(0 0 0 / 0.4), 0 1px 3px -1px rgb(0 0 0 / 0.5);
+  --shadow-raised: 0 2px 4px rgb(0 0 0 / 0.5), 0 10px 24px -14px rgb(0 0 0 / 0.9);
+  --shadow-pop: 0 16px 40px -16px rgb(0 0 0 / 0.8);
 }
 
 /* ---------------------------------------------------------------- base */
@@ -142,6 +154,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv02", "cv03", "cv04";
 }
 
 ::selection {
@@ -151,24 +164,38 @@ body {
 
 :focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline-offset: 1px;
   border-radius: 2px;
 }
 
-/* Etiqueta técnica: metadados em maiúsculas, como anotações de desenho */
+/* Etiqueta técnica: metadados em maiúsculas, como anotação de desenho */
 .label-tech {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  line-height: 1;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--faint);
 }
 
-/* Entrada suave e escalonada de listas e cartões */
+/* Fundo de grelha técnica, discreto (papel milimétrico) */
+.grid-paper {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--line) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--line) 70%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Barra de deslocamento discreta dentro de painéis */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -177,7 +204,7 @@ body {
 }
 
 .rise {
-  animation: rise 0.45s var(--ease-out-soft) both;
+  animation: rise 0.35s var(--ease-out-soft) both;
 }
 
 @media (prefers-reduced-motion: reduce) {

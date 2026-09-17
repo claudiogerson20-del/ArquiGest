@@ -33,30 +33,33 @@ function iconFor(type: string) {
 }
 
 export function EventList({ events, compact = false }: { events: EventItem[]; compact?: boolean }) {
-  if (!events.length) return <p className="text-sm text-muted">Ainda sem atividade.</p>;
+  if (!events.length) return <p className="text-[13px] text-muted">Ainda sem atividade.</p>;
   return (
     <ol className="relative">
       {events.map((e, i) => {
         const Icon = iconFor(e.type);
         const tone =
           e.type === "request_rejected"
-            ? "border-danger/30 bg-danger-soft text-danger"
+            ? "text-danger"
             : e.type === "phase_completed" || e.type === "request_approved" || e.type === "milestone_done"
-              ? "border-success/30 bg-success-soft text-success"
-              : "border-line bg-elevated text-muted";
+              ? "text-success"
+              : "text-faint";
         return (
-          <li key={e.id} className="relative flex gap-4 pb-5 last:pb-0">
+          <li key={e.id} className="relative flex gap-3 pb-4 last:pb-0">
             {i < events.length - 1 && (
-              <span className="absolute bottom-0 left-4 top-9 w-px bg-line" aria-hidden />
+              <span className="absolute bottom-0 left-[11px] top-6 w-px bg-line" aria-hidden />
             )}
             <span
-              className={cn("flex size-8 shrink-0 items-center justify-center rounded-full border", tone)}
+              className={cn(
+                "z-10 flex size-[22px] shrink-0 items-center justify-center rounded-full border border-line bg-surface",
+                tone,
+              )}
             >
-              <Icon className="size-4" aria-hidden />
+              <Icon className="size-3" aria-hidden />
             </span>
-            <div className="min-w-0 pt-1">
-              <p className="text-sm text-ink">{e.title}</p>
-              <p className="mt-0.5 font-mono text-xs text-faint" title={formatDateTime(e.created_at)}>
+            <div className="min-w-0 pt-0.5">
+              <p className="text-[13px] leading-snug text-ink">{e.title}</p>
+              <p className="mt-0.5 font-mono text-[11px] text-faint" title={formatDateTime(e.created_at)}>
                 {compact ? timeAgo(e.created_at) : formatDateTime(e.created_at)}
                 {e.actor?.full_name && ` · ${e.actor.full_name}`}
               </p>

@@ -29,7 +29,7 @@ export default async function ClientsPage() {
           {clients?.length ? (
             <ul className="divide-y divide-line">
               {clients.map((c) => (
-                <li key={c.id} className="flex flex-wrap items-center gap-3 px-5 py-4">
+                <li key={c.id} className="flex flex-wrap items-center gap-3 px-4 py-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-elevated text-sm font-semibold">
                     {c.full_name
                       .split(" ")
@@ -73,7 +73,7 @@ export default async function ClientsPage() {
         </Card>
         <Card className="h-fit">
           <CardHeader title="Novo cliente" />
-          <div className="p-5">
+          <div className="p-4">
             <ClientForm taxLabel={session.org.country === "BR" ? "CPF / CNPJ" : "NIF"} />
           </div>
         </Card>

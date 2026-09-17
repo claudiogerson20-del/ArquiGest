@@ -15,17 +15,17 @@ export function PhaseEditor({ projectId, phase }: { projectId: string; phase: Ph
 
   if (!open) {
     return (
-      <button onClick={() => setOpen(true)} className="mt-2 text-xs font-medium text-accent hover:underline">
+      <button onClick={() => setOpen(true)} className="mt-1.5 cursor-pointer text-xs font-medium text-accent hover:underline">
         Editar fase
       </button>
     );
   }
 
   return (
-    <form action={action} className="mt-3 grid gap-2 rounded-lg bg-elevated p-3 sm:grid-cols-3">
+    <form action={action} className="mt-2.5 grid gap-2 rounded-md border border-line bg-elevated p-2.5 sm:grid-cols-3">
       <label className="flex flex-col gap-1 text-xs text-muted">
         Estado
-        <Select name="status" defaultValue={phase.status} className="h-9">
+        <Select name="status" defaultValue={phase.status} className="h-8 text-[13px]">
           {Object.entries(PHASE_STATUS).map(([value, { label }]) => (
             <option key={value} value={value}>
               {label}
@@ -35,11 +35,11 @@ export function PhaseEditor({ projectId, phase }: { projectId: string; phase: Ph
       </label>
       <label className="flex flex-col gap-1 text-xs text-muted">
         Início
-        <Input name="start_date" type="date" defaultValue={phase.start_date ?? ""} className="h-9" />
+        <Input name="start_date" type="date" defaultValue={phase.start_date ?? ""} className="h-8 text-[13px]" />
       </label>
       <label className="flex flex-col gap-1 text-xs text-muted">
         Fim previsto
-        <Input name="due_date" type="date" defaultValue={phase.due_date ?? ""} className="h-9" />
+        <Input name="due_date" type="date" defaultValue={phase.due_date ?? ""} className="h-8 text-[13px]" />
       </label>
       <div className="flex flex-wrap items-center gap-2 sm:col-span-3">
         <SubmitButton size="sm">Guardar</SubmitButton>

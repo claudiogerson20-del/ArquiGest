@@ -1,8 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin"],
+  display: "swap",
+});
 const display = Instrument_Serif({
   variable: "--font-display",
   subsets: ["latin"],
@@ -23,8 +27,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f4f2ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#0e0e0f" },
+    { media: "(prefers-color-scheme: light)", color: "#eeeeec" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0c0d" },
   ],
 };
 
@@ -35,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt"
-      className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}
+      className={`${jakarta.variable} ${display.variable} ${mono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

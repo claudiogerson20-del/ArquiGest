@@ -44,7 +44,6 @@ function applyTheme(theme: Theme) {
       localStorage.setItem(STORAGE_KEY, theme);
     }
   } catch {
-    // Armazenamento bloqueado: o tema aplica-se à mesma nesta sessão.
     if (theme === "system") delete root.dataset.theme;
     else root.dataset.theme = theme;
   }
@@ -59,7 +58,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <div
       role="radiogroup"
       aria-label="Tema da aplicação"
-      className={cn("inline-flex rounded-full border border-line bg-surface p-0.5", className)}
+      className={cn("inline-flex rounded-md border border-line bg-elevated p-0.5", className)}
     >
       {OPTIONS.map(({ value, label, icon: Icon }) => {
         const active = theme === value;
@@ -73,11 +72,11 @@ export function ThemeToggle({ className }: { className?: string }) {
             title={label}
             onClick={() => applyTheme(value)}
             className={cn(
-              "flex size-8 cursor-pointer items-center justify-center rounded-full transition-colors duration-200",
-              active ? "bg-invert text-on-invert" : "text-muted hover:text-ink",
+              "flex size-7 cursor-pointer items-center justify-center rounded transition-colors duration-150",
+              active ? "bg-surface text-ink shadow-[var(--shadow-card)]" : "text-faint hover:text-ink",
             )}
           >
-            <Icon className="size-4" aria-hidden />
+            <Icon className="size-3.5" aria-hidden />
           </button>
         );
       })}

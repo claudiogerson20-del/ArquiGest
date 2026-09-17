@@ -36,7 +36,7 @@ export default async function TeamPage() {
             <CardHeader title="Membros" />
             <ul className="divide-y divide-line">
               {members?.map((m) => (
-                <li key={m.user_id} className="flex items-center gap-3 px-5 py-3">
+                <li key={m.user_id} className="flex items-center gap-3 px-4 py-2.5">
                   <div className="min-w-0 flex-1">
                     <p className="font-medium">
                       {m.profiles?.full_name || m.profiles?.email}
@@ -62,7 +62,7 @@ export default async function TeamPage() {
               <CardHeader title="Convites pendentes" />
               <ul className="divide-y divide-line">
                 {invitations.map((i) => (
-                  <li key={i.id} className="flex items-center gap-3 px-5 py-3 text-sm">
+                  <li key={i.id} className="flex items-center gap-3 px-4 py-2.5 text-sm">
                     <span className="flex-1">{i.email}</span>
                     <span className="text-xs text-muted">
                       {ROLE_LABEL[i.role]} · {formatDate(i.created_at)}
@@ -84,7 +84,7 @@ export default async function TeamPage() {
         {isAdmin && (
           <Card className="h-fit">
             <CardHeader title="Convidar arquiteto" />
-            <div className="p-5">
+            <div className="p-4">
               <InviteForm />
             </div>
           </Card>

@@ -55,6 +55,7 @@ Objetivo: um escritório gere os seus projetos e o cliente acompanha-os.
 | US-28 | Como **utilizador**, quero uma interface que transmita a elegância da arquitetura, com tipografia editorial e tokens semânticos. | ✅ |
 | US-29 | Como **utilizador**, quero modo escuro (claro/escuro/sistema), guardado entre sessões e sem cintilação ao carregar. | ✅ |
 | US-25b | Como **utilizador**, quero contraste conforme (texto ≥4,5:1, contornos ≥3:1) e foco visível nos dois modos. | ✅ |
+| US-30 | Como **utilizador profissional**, quero uma aplicação densa (barra lateral + barra superior, grelha compacta) que aproveite o ecrã. | ✅ |
 
 Ver [design-system.md](design-system.md).
 
@@ -115,3 +116,7 @@ como opção futura num plano premium.
   Instrument Serif + Inter + JetBrains Mono, modo escuro com seletor de três estados.
 - Contrastes medidos no browser nos dois modos; token `control` criado para cumprir o critério
   WCAG 1.4.11 nos contornos de campos.
+- Segunda iteração após revisão: a linguagem editorial (serifada, espaçada) lia como revista e não
+  como SaaS. Passou a **betão + barro**: Plus Jakarta Sans na interface, paleta de cinzas frios com
+  acento quente, densidade de aplicação (barra lateral 224px, barra superior 56px, cartões 16px,
+  linhas 40px), grelha até 1400px e menu de conta. Ver [design-system.md](design-system.md).

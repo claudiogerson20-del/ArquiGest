@@ -30,13 +30,14 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/projeto
     <>
       <PageHeader
         title="Projetos"
+        description={`${projects?.length ?? 0} projeto(s)`}
         action={
           <ButtonLink href="/projetos/novo">
             <Plus className="size-4" aria-hidden /> Novo projeto
           </ButtonLink>
         }
       />
-      <div className="mb-6 flex flex-wrap gap-2">
+      <div className="mb-4 flex flex-wrap gap-1.5">
         <FilterLink href="/projetos" active={!filter}>
           Todos
         </FilterLink>
@@ -47,7 +48,7 @@ export default async function ProjectsPage({ searchParams }: PageProps<"/projeto
         ))}
       </div>
       {projects?.length ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {projects.map((p) => (
             <ProjectCard key={p.id} project={p} showClient />
           ))}
@@ -66,9 +67,9 @@ function FilterLink({ href, active, children }: { href: string; active: boolean;
     <Link
       href={href}
       className={cn(
-        "cursor-pointer rounded-full border px-3.5 py-1.5 text-sm transition-colors duration-200",
+        "cursor-pointer rounded-md border px-2.5 py-1 text-[13px] transition-colors duration-150",
         active
-          ? "border-invert bg-invert text-on-invert"
+          ? "border-accent bg-accent-soft font-medium text-accent"
           : "border-line bg-surface text-muted hover:border-line-strong hover:text-ink",
       )}
     >

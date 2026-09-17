@@ -2,19 +2,29 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FolderKanban, Home, UserRound, UsersRound } from "lucide-react";
+import { FolderKanban, LayoutDashboard, UserRound, UsersRound } from "lucide-react";
 import { cn } from "@/components/ui";
 
-const icons = { home: Home, folder: FolderKanban, users: UserRound, team: UsersRound };
+const icons = { home: LayoutDashboard, folder: FolderKanban, users: UserRound, team: UsersRound };
 
 export function NavLinks({
   links,
+  className,
+  compact = false,
 }: {
   links: { href: string; label: string; icon: keyof typeof icons }[];
+  className?: string;
+  compact?: boolean;
 }) {
   const pathname = usePathname();
   return (
-    <nav className="flex gap-1 overflow-x-auto px-4 pb-4 md:flex-col md:pb-0">
+    <nav
+      className={cn(
+        compact ? "flex items-center gap-1 overflow-x-auto" : "flex flex-col gap-0.5",
+        className,
+      )}
+      aria-label="Navegação principal"
+    >
       {links.map(({ href, label, icon }) => {
         const Icon = icons[icon];
         const active = pathname === href || pathname.startsWith(`${href}/`);
@@ -24,18 +34,14 @@ export function NavLinks({
             href={href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "group relative flex shrink-0 items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors duration-200",
-              active ? "bg-elevated font-medium text-ink" : "text-muted hover:bg-elevated/60 hover:text-ink",
+              "flex shrink-0 items-center gap-2 rounded-md text-[13px] transition-colors duration-150",
+              compact ? "h-8 px-2.5" : "h-9 px-2.5",
+              active
+                ? "bg-accent-soft font-medium text-accent"
+                : "text-muted hover:bg-elevated hover:text-ink",
             )}
           >
-            <span
-              className={cn(
-                "absolute left-0 top-1/2 hidden h-5 w-0.5 -translate-y-1/2 rounded-full bg-accent transition-opacity md:block",
-                active ? "opacity-100" : "opacity-0",
-              )}
-              aria-hidden
-            />
-            <Icon className={cn("size-4", active && "text-accent")} aria-hidden />
+            <Icon className="size-4 shrink-0" aria-hidden />
             {label}
           </Link>
         );

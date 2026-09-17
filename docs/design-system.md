@@ -1,61 +1,74 @@
 # ArquiGest — sistema de design
 
-Direção: **editorial / arquitetónico**. Neutros de betão e marfim, uma cor de acento (terracota),
-linhas finas, muito espaço em branco e tipografia serifada nos títulos. A leitura deve lembrar um
-caderno de projeto, não um painel de administração genérico.
+Produto: **web app profissional (SaaS)** para escritórios de arquitetura.
+Materiais da linguagem visual: **betão** (cinzas frios, estrutura, linhas) e **barro/madeira**
+(o acento quente). Densidade de aplicação de trabalho, não de página de revista.
+
+## Princípios
+
+1. **Densidade primeiro.** Escala de espaçamento 4/8/12/16/24/32. Cartões com 16px de padding,
+   linhas de lista com 40–44px, barra superior e lateral com 56px. O ecrã mostra informação,
+   não ar.
+2. **Cinza estrutura, quente destaca.** O acento aparece só onde há ação ou estado: botão
+   principal, item ativo, fase em curso, progresso.
+3. **Números em mono.** Datas, percentagens, contagens e referências em JetBrains Mono com
+   `tabular-nums`, para as colunas não dançarem.
+4. **Hierarquia por tamanho e espaço, não por cor.**
 
 ## Modos claro e escuro
 
-Todas as cores são **tokens semânticos** definidos em [globals.css](../src/app/globals.css). Os
-componentes nunca usam cores em bruto (`bg-white`, `text-red-700`), apenas tokens — por isso o modo
-escuro não precisa de variantes `dark:`.
+Todas as cores são **tokens semânticos** em [globals.css](../src/app/globals.css); os componentes
+não usam cores em bruto, por isso não há variantes `dark:` espalhadas pelo código.
 
-| Token | Uso | Claro | Escuro |
-|-------|-----|-------|--------|
-| `bg` | fundo da página | `#f4f2ee` | `#0e0e0f` |
-| `surface` | cartões, barras, campos | `#fbfaf8` | `#17171a` |
-| `elevated` | zonas destacadas dentro de cartões | `#eeebe4` | `#202024` |
-| `ink` | texto principal | `#1a1917` | `#f3f1ed` |
-| `muted` | texto secundário | `#6a6660` | `#a4a09a` |
-| `faint` | metadados e etiquetas técnicas | `#6c675f` | `#918d87` |
-| `line` / `line-strong` | separadores | `#e3e0d9` / `#cbc6ba` | `#2a2a2f` / `#3b3b42` |
-| `control` | contorno de campos e botões secundários | `#8d887f` | `#6d6d74` |
-| `accent` | acento, progresso, estado ativo | `#a04b22` | `#e4926a` |
-| `invert` / `on-invert` | botão principal | preto / marfim | marfim / preto |
+| Token | Uso | Claro (betão) | Escuro (grafite) |
+|-------|-----|---------------|------------------|
+| `bg` | fundo da aplicação | `#eeeeec` | `#0b0c0d` |
+| `surface` | painéis, barras, campos | `#fdfdfc` | `#131416` |
+| `elevated` | zonas destacadas dentro de painéis | `#f2f2f0` | `#1b1d1f` |
+| `sunken` | calhas de progresso, fundos recuados | `#e6e6e3` | `#0f1011` |
+| `ink` | texto principal | `#16181a` | `#f0f0ee` |
+| `muted` | texto secundário | `#61656a` | `#a0a4a9` |
+| `faint` | metadados e etiquetas técnicas | `#62666b` | `#8e9297` |
+| `line` / `line-strong` | separadores e contornos | `#e0e0dd` / `#c9c9c5` | `#26282b` / `#35383c` |
+| `control` | contorno de campos e botões secundários | `#8b8d90` | `#6b6f74` |
+| `accent` / `accent-hover` / `accent-soft` | ação, estado ativo, progresso | `#9a4a26` / `#833d1f` / `#f2e5de` | `#e08a5b` / `#eda077` / `#33200f` |
 | `success` `warning` `danger` `info` (+ `-soft`) | estados | — | — |
 
-**Escolha do tema:** botão de três estados (Claro · Escuro · Sistema) na barra lateral e na página
-pública. A preferência fica em `localStorage` e é aplicada por um script inline antes da primeira
-pintura, por isso não há cintilação. Sem escolha, segue o sistema operativo.
+**Seletor de tema:** Claro · Escuro · Sistema, na barra superior. A escolha fica em `localStorage`
+e é aplicada por um script inline antes da primeira pintura (sem cintilação).
 
 ## Tipografia
 
 | Papel | Fonte | Onde |
 |-------|-------|------|
-| Títulos | **Instrument Serif** | títulos de página, nomes de projeto, números das métricas |
-| Interface | **Inter** | corpo, botões, formulários |
-| Técnica | **JetBrains Mono** | etiquetas (`.label-tech`), datas, percentagens, referências |
+| Interface | **Plus Jakarta Sans** | tudo: títulos, corpo, botões, formulários |
+| Técnica | **JetBrains Mono** | etiquetas `.label-tech`, datas, percentagens, códigos de fase |
+| Editorial | **Instrument Serif** | reservada; não usada na aplicação |
 
-A classe `.label-tech` (mono, maiúsculas, espaçamento largo) é a "anotação de desenho" do produto:
-usa-se para rótulos como `ESCRITÓRIO`, `PROGRESSO` ou a referência do projeto.
+Escala: 11px (mono/etiquetas) · 13px (interface densa) · 14px · 15px (títulos de cartão) ·
+20px (título de página) · 36–54px (apenas na página pública).
 
-## Componentes
+## Estrutura da aplicação
 
-Todos em [src/components/ui.tsx](../src/components/ui.tsx): `Button` (primary, secondary, ghost,
-danger), `Input`, `Textarea`, `Select`, `Field`, `Badge`, `Card`, `CardHeader`, `EmptyState`,
-`PageHeader`, `Progress` (linha fina, não barra gorda) e `Stat`.
+- **Barra lateral (≥1024px):** logótipo, escritório, navegação, ação principal fixa no fundo.
+- **Barra superior:** navegação em ecrãs pequenos, seletor de tema e menu de conta.
+- **Conteúdo:** largura máxima de 1400px, gutters de 16/24px, grelha até 4 colunas de métricas
+  e 3 de projetos.
+- **Página de projeto:** migalhas, título com estado, bloco de métricas (início, entrega,
+  progresso) e separadores compactos.
 
-## Acessibilidade verificada
+## Acessibilidade verificada (medida no browser, nos dois modos)
 
-- Texto ≥ 4,5:1 em ambos os modos, incluindo texto secundário e etiquetas técnicas.
+- Texto principal ≥ 15:1; secundário ≥ 5,2:1; etiquetas técnicas ≥ 4,7:1.
+- Botão principal: 6,2:1 (claro) e 6,7:1 (escuro). Item de navegação ativo: ≥ 5:1.
 - Contornos de campos e botões secundários ≥ 3:1 (WCAG 2.2, critério 1.4.11).
-- Anel de foco visível (`:focus-visible`, 2px de acento) em todos os elementos interativos.
-- Altura mínima de 44px nos campos e nos botões principais.
-- `prefers-reduced-motion` desliga animações e transições.
-- Estado ativo da navegação marcado com `aria-current` e não apenas por cor.
+- Estado ativo assinalado com `aria-current`, não apenas por cor. Badges de estado têm ponto
+  colorido **e** texto.
+- Etiquetas de métricas quebram linha em vez de serem cortadas (375px verificado, sem scroll
+  horizontal).
+- Foco visível (2px de acento) e `prefers-reduced-motion` respeitado.
 
 ## Movimento
 
-Transições de 200ms nas mudanças de estado, 500ms na barra de progresso, entrada `rise` (8px +
-opacidade) apenas no conteúdo principal da página pública. Sem animações decorativas em listas de
-dados.
+Transições de 150ms nos estados, 500ms na barra de progresso, entrada `rise` apenas no hero da
+página pública. Sem animação decorativa em listas de dados.
