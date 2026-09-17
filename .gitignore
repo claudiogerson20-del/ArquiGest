@@ -45,3 +45,6 @@ next-env.d.ts
 # supabase
 supabase/.temp
 supabase/.branches
+
+# skills locais do Claude Code (ferramentas, não fazem parte da app)
+.claude/skills/
