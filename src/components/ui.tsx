@@ -258,7 +258,7 @@ export function Progress({ value, className }: { value: number; className?: stri
       aria-label="Progresso do projeto"
     >
       <div
-        className="h-full rounded-full bg-ink transition-[width] duration-500 ease-[var(--ease-out-soft)]"
+        className="h-full rounded-full bg-primary transition-[width] duration-500 ease-[var(--ease-out-soft)]"
         style={{ width: `${value}%` }}
       />
     </div>

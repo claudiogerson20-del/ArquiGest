@@ -125,11 +125,11 @@ export default function Home() {
                 </div>
 
                 {/* Cartão de destaque — o "saldo" deste produto é o progresso */}
-                <div className="mt-4 rounded-[20px] bg-primary p-5 text-on-primary">
+                <div className="feature-card mt-4 rounded-[20px] p-5">
                   <p className="text-xs opacity-70">Progresso do projeto</p>
                   <p className="mt-1 font-display text-4xl font-bold tracking-tight">42%</p>
-                  <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-on-primary/15">
-                    <div className="h-full w-[42%] rounded-full bg-on-primary" />
+                  <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-white/15">
+                    <div className="h-full w-[42%] rounded-full bg-[#e8a464]" />
                   </div>
                   <div className="mt-3 flex items-center justify-between text-xs opacity-70">
                     <span>Estudo Prévio</span>
@@ -207,7 +207,7 @@ export default function Home() {
 
         {/* Chamada final */}
         <section className="mx-auto w-full max-w-6xl px-5 pb-20">
-          <div className="rounded-[28px] bg-primary px-6 py-14 text-center text-on-primary sm:px-12">
+          <div className="feature-card rounded-[28px] px-6 py-14 text-center sm:px-12">
             <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
               Menos e-mails. Clientes informados. Projetos a horas.
             </h2>
@@ -217,7 +217,7 @@ export default function Home() {
             <div className="mt-8 flex justify-center">
               <Link
                 href="/registo"
-                className="inline-flex h-12 items-center gap-2 rounded-xl bg-on-primary px-6 text-[15px] font-medium text-primary transition-opacity hover:opacity-90"
+                className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#f4ede4] px-6 text-[15px] font-medium text-[#3b2215] transition-opacity hover:opacity-90"
               >
                 Começar agora
                 <ArrowRight className="size-4" aria-hidden />

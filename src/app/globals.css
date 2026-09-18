@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /*
-  ArquiGest — sistema de design v3 "contemporâneo".
-  Monocromático (branco, betão, preto) + um único toque de carvalho.
+  ArquiGest — sistema de design v4 "betão e luz quente".
+  Betão, aço preto e pedra; nogueira e couro conhaque; luz de cobre como acento.
   Componentes: cantos generosos, contornos subtis, camadas translúcidas, sombras suaves.
   Cores sempre por token semântico — o modo escuro resolve-se sozinho.
 */
@@ -51,7 +51,7 @@
   --shadow-card: 0 1px 2px rgb(10 10 10 / 0.04);
   --shadow-raised: 0 1px 2px rgb(10 10 10 / 0.04), 0 12px 32px -16px rgb(10 10 10 / 0.18);
   --shadow-pop: 0 20px 48px -20px rgb(10 10 10 / 0.35);
-  --shadow-button: 0 1px 2px rgb(10 10 10 / 0.12), 0 6px 16px -8px rgb(10 10 10 / 0.35);
+  --shadow-button: 0 1px 2px rgb(27 26 24 / 0.15), 0 8px 20px -10px rgb(107 58 37 / 0.45);
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -60,34 +60,34 @@
 :root {
   color-scheme: light;
 
-  --bg: #f5f5f3; /* branco quente, como estuque */
-  --surface: #ffffff;
-  --elevated: #f0f0ee;
-  --sunken: #e8e8e5;
-  --glass: rgb(255 255 255 / 0.72);
-  --ink: #0f0f0f;
-  --muted: #5d5d5a; /* 6.5:1 sobre branco */
-  --faint: #6b6b67; /* 5.3:1 sobre branco */
-  --line: #e7e7e3;
-  --line-strong: #d6d6d1;
-  --control: #8a8a85; /* 3.4:1 — contorno de campos */
-  --primary: #0f0f0f; /* ação principal: preto */
-  --primary-hover: #2a2a29;
-  --on-primary: #ffffff;
-  --accent: #8a5a32; /* carvalho — 5.9:1 sobre branco */
-  --accent-hover: #744a28;
-  --accent-soft: #f3ebe3;
-  --on-accent: #ffffff;
-  --invert: #0f0f0f;
-  --on-invert: #ffffff;
-  --success: #276749;
-  --success-soft: #e4f1ea;
+  --bg: #e9e7e3; /* betão claro à vista */
+  --surface: #f6f5f2; /* cortina / estuque quente */
+  --elevated: #e2e0db;
+  --sunken: #d9d6d0;
+  --glass: rgb(246 245 242 / 0.78);
+  --ink: #1b1a18; /* aço preto */
+  --muted: #5b5852; /* 6.0:1 sobre surface */
+  --faint: #66625b; /* 5.2:1 sobre surface */
+  --line: #dcd9d3;
+  --line-strong: #cbc7bf;
+  --control: #827c73; /* ≥3.2:1 sobre fundo e superfície — contorno de campos */
+  --primary: #6b3a25; /* couro conhaque */
+  --primary-hover: #582f1e;
+  --on-primary: #faf7f2;
+  --accent: #7c4a2c; /* nogueira */
+  --accent-hover: #673c23;
+  --accent-soft: #ecdfd3;
+  --on-accent: #faf7f2;
+  --invert: #1b1a18;
+  --on-invert: #f6f5f2;
+  --success: #2f6547;
+  --success-soft: #dde9e0;
   --warning: #7a5212;
-  --warning-soft: #f6eddb;
-  --danger: #a62a1e;
-  --danger-soft: #f9e5e2;
-  --info: #2c4f6b;
-  --info-soft: #e6edf3;
+  --warning-soft: #f0e5d0;
+  --danger: #a12d20;
+  --danger-soft: #f3e0dc;
+  --info: #334f63;
+  --info-soft: #dfe6eb;
 }
 
 /* -------------------------------------------------------------- escuro */
@@ -95,78 +95,78 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --bg: #0a0a0a;
-    --surface: #131313;
-    --elevated: #1b1b1b;
-    --sunken: #0e0e0e;
-    --glass: rgb(19 19 19 / 0.72);
-    --ink: #f5f5f3;
-    --muted: #a3a3a0;
-    --faint: #93938f;
-    --line: #232323;
-    --line-strong: #333333;
-    --control: #6e6e6a;
-    --primary: #f5f5f3; /* ação principal: branco */
-    --primary-hover: #dededb;
-    --on-primary: #0f0f0f;
-    --accent: #d4a276; /* carvalho claro */
-    --accent-hover: #e2b893;
-    --accent-soft: #2a1f15;
-    --on-accent: #0f0f0f;
-    --invert: #f5f5f3;
-    --on-invert: #0f0f0f;
-    --success: #6fc79c;
-    --success-soft: #122b1f;
-    --warning: #e1b367;
-    --warning-soft: #2e2311;
-    --danger: #f08b80;
-    --danger-soft: #341614;
-    --info: #8ab8dc;
-    --info-soft: #132433;
+    --bg: #121211; /* betão escuro na penumbra */
+    --surface: #1b1a19;
+    --elevated: #252422;
+    --sunken: #0e0e0d;
+    --glass: rgb(27 26 25 / 0.74);
+    --ink: #ede9e2; /* branco quente das cortinas */
+    --muted: #a9a399;
+    --faint: #968f85;
+    --line: #2e2c29;
+    --line-strong: #3d3a36;
+    --control: #726c63;
+    --primary: #d8965a; /* luz de cobre dos candeeiros */
+    --primary-hover: #e5a86f;
+    --on-primary: #151413;
+    --accent: #d8965a;
+    --accent-hover: #e5a86f;
+    --accent-soft: #3a2518; /* couro na sombra */
+    --on-accent: #151413;
+    --invert: #ede9e2;
+    --on-invert: #1b1a19;
+    --success: #7cc49f;
+    --success-soft: #152a20;
+    --warning: #e2b467;
+    --warning-soft: #30240f;
+    --danger: #ee8d80;
+    --danger-soft: #361816;
+    --info: #97b6cc;
+    --info-soft: #172430;
 
     --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5);
     --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.5), 0 16px 40px -20px rgb(0 0 0 / 0.9);
     --shadow-pop: 0 24px 56px -24px rgb(0 0 0 / 0.95);
-    --shadow-button: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 18px -8px rgb(255 255 255 / 0.18);
+    --shadow-button: 0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px -10px rgb(216 150 90 / 0.45);
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #0a0a0a;
-  --surface: #131313;
-  --elevated: #1b1b1b;
-  --sunken: #0e0e0e;
-  --glass: rgb(19 19 19 / 0.72);
-  --ink: #f5f5f3;
-  --muted: #a3a3a0;
-  --faint: #93938f;
-  --line: #232323;
-  --line-strong: #333333;
-  --control: #6e6e6a;
-  --primary: #f5f5f3;
-  --primary-hover: #dededb;
-  --on-primary: #0f0f0f;
-  --accent: #d4a276;
-  --accent-hover: #e2b893;
-  --accent-soft: #2a1f15;
-  --on-accent: #0f0f0f;
-  --invert: #f5f5f3;
-  --on-invert: #0f0f0f;
-  --success: #6fc79c;
-  --success-soft: #122b1f;
-  --warning: #e1b367;
-  --warning-soft: #2e2311;
-  --danger: #f08b80;
-  --danger-soft: #341614;
-  --info: #8ab8dc;
-  --info-soft: #132433;
+  --bg: #121211; /* betão escuro na penumbra */
+  --surface: #1b1a19;
+  --elevated: #252422;
+  --sunken: #0e0e0d;
+  --glass: rgb(27 26 25 / 0.74);
+  --ink: #ede9e2; /* branco quente das cortinas */
+  --muted: #a9a399;
+  --faint: #968f85;
+  --line: #2e2c29;
+  --line-strong: #3d3a36;
+  --control: #726c63;
+  --primary: #d8965a; /* luz de cobre dos candeeiros */
+  --primary-hover: #e5a86f;
+  --on-primary: #151413;
+  --accent: #d8965a;
+  --accent-hover: #e5a86f;
+  --accent-soft: #3a2518; /* couro na sombra */
+  --on-accent: #151413;
+  --invert: #ede9e2;
+  --on-invert: #1b1a19;
+  --success: #7cc49f;
+  --success-soft: #152a20;
+  --warning: #e2b467;
+  --warning-soft: #30240f;
+  --danger: #ee8d80;
+  --danger-soft: #361816;
+  --info: #97b6cc;
+  --info-soft: #172430;
 
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.5);
   --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.5), 0 16px 40px -20px rgb(0 0 0 / 0.9);
   --shadow-pop: 0 24px 56px -24px rgb(0 0 0 / 0.95);
-  --shadow-button: 0 1px 2px rgb(0 0 0 / 0.4), 0 6px 18px -8px rgb(255 255 255 / 0.18);
+  --shadow-button: 0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px -10px rgb(216 150 90 / 0.45);
 }
 
 /* ---------------------------------------------------------------- base */
@@ -207,8 +207,22 @@ h3 {
 /* Luz ambiente: gradiente neutro muito suave, como luz rasante numa parede */
 .ambient {
   background:
-    radial-gradient(60rem 30rem at 85% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
-    radial-gradient(50rem 30rem at 0% 0%, color-mix(in srgb, var(--ink) 5%, transparent), transparent 70%);
+    radial-gradient(40rem 26rem at 88% 8%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 70%),
+    radial-gradient(30rem 22rem at 8% 90%, color-mix(in srgb, var(--primary) 8%, transparent), transparent 70%);
+}
+
+/* Cartão de destaque: couro/nogueira com brilho de candeeiro (usado com moderação) */
+.feature-card {
+  color: #f4ede4;
+  background:
+    radial-gradient(22rem 14rem at 100% 0%, rgb(232 164 100 / 0.35), transparent 70%),
+    linear-gradient(145deg, #3b2215 0%, #5e3520 55%, #7a4629 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 18px 40px -22px rgb(94 53 32 / 0.8);
+}
+
+/* Textura de betão muito subtil (grão), aplicada ao fundo da aplicação */
+.concrete {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Grelha de desenho técnico, discreta */
