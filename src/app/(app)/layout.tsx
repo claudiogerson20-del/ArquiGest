@@ -24,29 +24,41 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       ]
     : [{ href: "/painel", label: "Os meus projetos", icon: "folder" as const }];
 
+  const orgInitials = session.org?.name
+    .split(" ")
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
   return (
     <div className="flex min-h-dvh flex-col lg:flex-row">
       {/* Barra lateral (ecrãs grandes) */}
-      <aside className="sticky top-0 z-30 hidden h-dvh w-56 shrink-0 flex-col border-r border-line bg-surface lg:flex">
-        <div className="flex h-14 items-center border-b border-line px-4">
+      <aside className="sticky top-0 z-30 hidden h-dvh w-64 shrink-0 flex-col border-r border-line bg-surface lg:flex">
+        <div className="flex h-16 items-center px-5">
           <Link href="/painel" className="transition-opacity hover:opacity-70">
             <Logo />
           </Link>
         </div>
 
         {session.org && (
-          <div className="border-b border-line px-4 py-3">
-            <p className="label-tech">Escritório</p>
-            <p className="mt-1.5 truncate text-[13px] font-semibold text-ink">{session.org.name}</p>
-            <p className="mt-0.5 text-xs text-muted">{ROLE_LABEL[session.org.role]}</p>
+          <div className="mx-3 mb-4 flex items-center gap-3 rounded-2xl border border-line bg-elevated/60 p-3">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary font-display text-xs font-bold text-on-primary">
+              {orgInitials}
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-[13px] font-semibold text-ink">{session.org.name}</p>
+              <p className="text-xs text-muted">{ROLE_LABEL[session.org.role]}</p>
+            </div>
           </div>
         )}
 
-        <NavLinks links={links} className="flex-1 px-2 py-3" />
+        <p className="label-tech px-5 pb-2">Menu</p>
+        <NavLinks links={links} className="flex-1 px-3" />
 
         {session.org && (
-          <div className="border-t border-line p-3">
-            <ButtonLink href="/projetos/novo" size="sm" className="w-full">
+          <div className="p-3">
+            <ButtonLink href="/projetos/novo" className="w-full">
               <Plus className="size-4" aria-hidden /> Novo projeto
             </ButtonLink>
           </div>
@@ -54,8 +66,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Barra superior */}
-        <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-line bg-surface/90 px-4 backdrop-blur-md md:px-6">
+        {/* Barra superior com vidro fosco */}
+        <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-line bg-glass px-4 backdrop-blur-xl md:px-8">
           <Link href="/painel" className="lg:hidden">
             <Logo compact />
           </Link>
@@ -72,8 +84,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           />
         </header>
 
-        <main className="min-w-0 flex-1 px-4 py-6 md:px-6 md:py-7">
-          <div className="mx-auto w-full max-w-[1400px]">{children}</div>
+        <main className="min-w-0 flex-1 px-4 py-6 md:px-8 md:py-8">
+          <div className="mx-auto w-full max-w-[1320px]">{children}</div>
         </main>
       </div>
     </div>

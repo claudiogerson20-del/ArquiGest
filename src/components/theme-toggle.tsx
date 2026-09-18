@@ -58,7 +58,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <div
       role="radiogroup"
       aria-label="Tema da aplicação"
-      className={cn("inline-flex rounded-md border border-line bg-elevated p-0.5", className)}
+      className={cn("inline-flex rounded-xl border border-line bg-elevated p-1", className)}
     >
       {OPTIONS.map(({ value, label, icon: Icon }) => {
         const active = theme === value;
@@ -72,7 +72,7 @@ export function ThemeToggle({ className }: { className?: string }) {
             title={label}
             onClick={() => applyTheme(value)}
             className={cn(
-              "flex size-7 cursor-pointer items-center justify-center rounded transition-colors duration-150",
+              "flex size-7 cursor-pointer items-center justify-center rounded-lg transition-colors duration-150",
               active ? "bg-surface text-ink shadow-[var(--shadow-card)]" : "text-faint hover:text-ink",
             )}
           >

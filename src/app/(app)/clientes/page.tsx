@@ -27,7 +27,7 @@ export default async function ClientsPage() {
         <Card className="lg:col-span-2">
           <CardHeader title={`${clients?.length ?? 0} cliente(s)`} />
           {clients?.length ? (
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line border-t border-line">
               {clients.map((c) => (
                 <li key={c.id} className="flex flex-wrap items-center gap-3 px-4 py-3">
                   <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-elevated text-sm font-semibold">
@@ -73,7 +73,7 @@ export default async function ClientsPage() {
         </Card>
         <Card className="h-fit">
           <CardHeader title="Novo cliente" />
-          <div className="p-4">
+          <div className="px-5 pb-5 pt-1">
             <ClientForm taxLabel={session.org.country === "BR" ? "CPF / CNPJ" : "NIF"} />
           </div>
         </Card>

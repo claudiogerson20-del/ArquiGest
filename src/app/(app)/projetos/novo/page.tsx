@@ -49,7 +49,7 @@ export default async function NewProjectPage() {
         <Card>
           <EmptyState title="Primeiro registe um cliente">
             Cada projeto pertence a um cliente.{" "}
-            <Link href="/clientes" className="text-accent hover:underline">
+            <Link href="/clientes" className="font-medium text-ink underline underline-offset-4">
               Adicionar cliente
             </Link>
           </EmptyState>

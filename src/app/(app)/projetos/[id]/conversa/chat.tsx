@@ -102,7 +102,7 @@ export function Chat({
               )}
               <div
                 className={cn(
-                  "max-w-[80%] whitespace-pre-wrap break-words rounded-xl px-4 py-2.5 text-sm leading-relaxed shadow-[var(--shadow-card)]",
+                  "max-w-[80%] whitespace-pre-wrap break-words rounded-xl px-5 py-3 text-sm leading-relaxed shadow-[var(--shadow-card)]",
                   mine ? "rounded-br-sm bg-invert text-on-invert" : "rounded-bl-sm border border-line bg-surface",
                 )}
               >

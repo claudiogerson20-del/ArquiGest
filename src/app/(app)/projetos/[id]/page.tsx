@@ -34,21 +34,21 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
           title="Fases do projeto"
           description={isStaff ? "Atualize o estado — o cliente vê as alterações de imediato." : undefined}
         />
-        <ul className="divide-y divide-line">
+        <ul className="divide-y divide-line border-t border-line">
           {phases?.map((phase) => {
             const st = PHASE_STATUS[phase.status];
             const done = phase.status === "completed";
             const current = phase.status === "in_progress" || phase.status === "awaiting_client";
             const late = !done && phase.due_date && daysUntil(phase.due_date) < 0;
             return (
-              <li key={phase.id} className={cn("px-4 py-3", current && "bg-accent-soft/40")}>
+              <li key={phase.id} className={cn("px-5 py-4", current && "bg-elevated/60")}>
                 <div className="flex items-start gap-3">
                   <span
                     className={cn(
-                      "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md font-mono text-[11px] ring-1 ring-inset",
-                      done && "bg-accent text-on-accent ring-accent",
-                      current && "bg-surface text-accent ring-accent",
-                      !done && !current && "bg-elevated text-faint ring-line-strong",
+                      "flex size-8 shrink-0 items-center justify-center rounded-xl font-mono text-[11px] font-medium",
+                      done && "bg-primary text-on-primary",
+                      current && "bg-accent-soft text-accent",
+                      !done && !current && "bg-elevated text-faint",
                     )}
                   >
                     {done ? <Check className="size-3.5" aria-hidden /> : phase.position}
@@ -88,7 +88,7 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
         {project.description && (
           <Card>
             <CardHeader title="Sobre o projeto" />
-            <div className="px-4 py-3">
+            <div className="px-5 py-3">
               <p className="whitespace-pre-line text-[13px] leading-relaxed text-muted">
                 {project.description}
               </p>
@@ -101,17 +101,17 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
           <CardHeader
             title="Próximos prazos"
             action={
-              <Link href={`/projetos/${id}/prazos`} className="text-xs text-accent hover:underline">
+              <Link href={`/projetos/${id}/prazos`} className="text-xs font-medium text-ink underline-offset-4 hover:underline">
                 Ver todos
               </Link>
             }
           />
           {milestones?.length ? (
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line border-t border-line">
               {milestones.map((m) => {
                 const d = daysUntil(m.due_date);
                 return (
-                  <li key={m.id} className="flex items-center justify-between gap-2 px-4 py-2.5">
+                  <li key={m.id} className="flex items-center justify-between gap-2 px-5 py-3">
                     <span className="truncate text-[13px] text-ink">{m.title}</span>
                     <span
                       className={cn(
@@ -134,12 +134,12 @@ export default async function ProjectOverview({ params }: PageProps<"/projetos/[
           <CardHeader
             title="Atividade recente"
             action={
-              <Link href={`/projetos/${id}/linha-temporal`} className="text-xs text-accent hover:underline">
+              <Link href={`/projetos/${id}/linha-temporal`} className="text-xs font-medium text-ink underline-offset-4 hover:underline">
                 Ver tudo
               </Link>
             }
           />
-          <div className="px-4 py-3.5">
+          <div className="px-5 py-4">
             <EventList events={events ?? []} compact />
           </div>
         </Card>

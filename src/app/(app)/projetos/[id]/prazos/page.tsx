@@ -40,7 +40,7 @@ export default async function MilestonesPage({ params }: PageProps<"/projetos/[i
         <Card>
           <CardHeader title="Prazos por cumprir" description={`${pending.length} pendente(s)`} />
           {pending.length ? (
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line border-t border-line">
               {pending.map((m) => {
                 const label = dueLabel(m.due_date);
                 return (
@@ -83,9 +83,9 @@ export default async function MilestonesPage({ params }: PageProps<"/projetos/[i
         {done.length > 0 && (
           <Card>
             <CardHeader title="Cumpridos" />
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line border-t border-line">
               {done.map((m) => (
-                <li key={m.id} className="flex items-center gap-3 px-4 py-2.5 text-sm">
+                <li key={m.id} className="flex items-center gap-3 px-5 py-3 text-sm">
                   <Check className="size-4 text-success" aria-hidden />
                   <span className={cn("flex-1 text-muted line-through")}>{m.title}</span>
                   <span className="text-xs text-muted">
@@ -108,7 +108,7 @@ export default async function MilestonesPage({ params }: PageProps<"/projetos/[i
       {isStaff && (
         <Card className="h-fit">
           <CardHeader title="Novo prazo" description="Entregas, reuniões, submissões à câmara/prefeitura…" />
-          <div className="p-4">
+          <div className="px-5 pb-5 pt-1">
             <MilestoneForm projectId={id} phases={phases ?? []} />
           </div>
         </Card>

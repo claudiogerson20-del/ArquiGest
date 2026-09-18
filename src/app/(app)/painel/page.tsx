@@ -66,7 +66,7 @@ export default async function DashboardPage() {
       />
 
       {isStaff && (
-        <div className="mb-6 grid grid-cols-2 gap-3 xl:grid-cols-4">
+        <div className="mb-8 grid grid-cols-2 gap-4 xl:grid-cols-4">
           <Stat
             label="Projetos em curso"
             value={projects?.filter((p) => p.status === "active").length ?? 0}
@@ -97,7 +97,7 @@ export default async function DashboardPage() {
           <SectionTitle
             action={
               isStaff && (
-                <Link href="/projetos" className="text-[13px] text-accent hover:underline">
+                <Link href="/projetos" className="text-[13px] font-medium text-ink underline-offset-4 hover:underline">
                   Ver todos
                 </Link>
               )
@@ -106,7 +106,7 @@ export default async function DashboardPage() {
             {isStaff ? "Projetos ativos" : "Os meus projetos"}
           </SectionTitle>
           {projects?.length ? (
-            <div className="grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-3">
               {projects.map((p) => (
                 <ProjectCard key={p.id} project={p} showClient={isStaff} />
               ))}
@@ -115,7 +115,7 @@ export default async function DashboardPage() {
             <Card>
               <EmptyState title="Ainda não há projetos">
                 {isStaff ? (
-                  <Link href="/projetos/novo" className="text-accent hover:underline">
+                  <Link href="/projetos/novo" className="font-medium text-ink underline underline-offset-4">
                     Criar o primeiro projeto
                   </Link>
                 ) : (
@@ -130,14 +130,14 @@ export default async function DashboardPage() {
           <Card>
             <CardHeader title="Próximos prazos" />
             {milestones?.length ? (
-              <ul className="divide-y divide-line">
+              <ul className="divide-y divide-line border-t border-line">
                 {milestones.map((m) => {
                   const d = daysUntil(m.due_date);
                   return (
                     <li key={m.id}>
                       <Link
                         href={`/projetos/${m.project_id}/prazos`}
-                        className="flex items-center gap-3 px-4 py-2.5 transition-colors hover:bg-elevated"
+                        className="flex items-center gap-3 px-5 py-3 transition-colors hover:bg-elevated"
                       >
                         <span
                           className={`size-1.5 shrink-0 rounded-full ${
@@ -169,12 +169,12 @@ export default async function DashboardPage() {
           <Card>
             <CardHeader title={isStaff ? "Documentos para rever" : "Documentos pedidos"} />
             {requests?.length ? (
-              <ul className="divide-y divide-line">
+              <ul className="divide-y divide-line border-t border-line">
                 {requests.map((r) => (
                   <li key={r.id}>
                     <Link
                       href={`/projetos/${r.project_id}/documentos`}
-                      className="block px-4 py-2.5 transition-colors hover:bg-elevated"
+                      className="block px-5 py-3 transition-colors hover:bg-elevated"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <span className="truncate text-[13px] text-ink">{r.title}</span>

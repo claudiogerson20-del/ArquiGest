@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
       <LoginForm next={typeof next === "string" ? next : undefined} linkError={erro === "link"} />
       <p className="mt-5 border-t border-line pt-4 text-center text-[13px] text-muted">
         É um escritório de arquitetura?{" "}
-        <Link href="/registo" className="font-medium text-accent hover:underline">
+        <Link href="/registo" className="font-medium text-ink underline underline-offset-4">
           Criar conta
         </Link>
       </p>

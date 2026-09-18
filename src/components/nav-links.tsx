@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FolderKanban, LayoutDashboard, UserRound, UsersRound } from "lucide-react";
+import { FolderKanban, LayoutGrid, UserRound, UsersRound } from "lucide-react";
 import { cn } from "@/components/ui";
 
-const icons = { home: LayoutDashboard, folder: FolderKanban, users: UserRound, team: UsersRound };
+const icons = { home: LayoutGrid, folder: FolderKanban, users: UserRound, team: UsersRound };
 
 export function NavLinks({
   links,
@@ -19,10 +19,7 @@ export function NavLinks({
   const pathname = usePathname();
   return (
     <nav
-      className={cn(
-        compact ? "flex items-center gap-1 overflow-x-auto" : "flex flex-col gap-0.5",
-        className,
-      )}
+      className={cn(compact ? "flex items-center gap-1 overflow-x-auto" : "flex flex-col gap-1", className)}
       aria-label="Navegação principal"
     >
       {links.map(({ href, label, icon }) => {
@@ -34,14 +31,14 @@ export function NavLinks({
             href={href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "flex shrink-0 items-center gap-2 rounded-md text-[13px] transition-colors duration-150",
-              compact ? "h-8 px-2.5" : "h-9 px-2.5",
+              "flex shrink-0 items-center gap-2.5 rounded-xl text-sm transition-colors duration-150",
+              compact ? "h-9 px-3" : "h-10 px-3",
               active
-                ? "bg-accent-soft font-medium text-accent"
-                : "text-muted hover:bg-elevated hover:text-ink",
+                ? "bg-elevated font-medium text-ink shadow-[inset_0_0_0_1px_var(--line)]"
+                : "text-muted hover:bg-elevated/70 hover:text-ink",
             )}
           >
-            <Icon className="size-4 shrink-0" aria-hidden />
+            <Icon className={cn("size-[18px] shrink-0", active ? "text-ink" : "text-faint")} aria-hidden />
             {label}
           </Link>
         );

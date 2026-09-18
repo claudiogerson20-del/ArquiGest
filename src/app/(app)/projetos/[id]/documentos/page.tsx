@@ -43,14 +43,14 @@ export default async function DocumentsPage({ params }: PageProps<"/projetos/[id
             description={isStaff ? "Aprove ou rejeite o que o cliente enviou." : "Envie os documentos que o seu arquiteto pediu."}
           />
           {requests?.length ? (
-            <ul className="divide-y divide-line">
+            <ul className="divide-y divide-line border-t border-line">
               {requests.map((r) => {
                 const st = REQUEST_STATUS[r.status];
                 const files = byRequest.get(r.id) ?? [];
                 const canUpload = !isStaff && (r.status === "pending" || r.status === "rejected");
                 const overdue = r.due_date && r.status === "pending" && daysUntil(r.due_date) < 0;
                 return (
-                  <li key={r.id} className="px-4 py-3">
+                  <li key={r.id} className="px-5 py-3">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
@@ -136,13 +136,13 @@ export default async function DocumentsPage({ params }: PageProps<"/projetos/[id
         <div className="flex flex-col gap-6">
           <Card>
             <CardHeader title="Publicar ficheiros" />
-            <div className="p-4">
+            <div className="px-5 pb-5 pt-1">
               <StaffUploader orgId={project.org_id} projectId={id} phases={phases ?? []} />
             </div>
           </Card>
           <Card>
             <CardHeader title="Pedir documento ao cliente" />
-            <div className="p-4">
+            <div className="px-5 pb-5 pt-1">
               <RequestForm projectId={id} />
             </div>
           </Card>

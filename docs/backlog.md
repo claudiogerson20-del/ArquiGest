@@ -120,3 +120,6 @@ como opção futura num plano premium.
   como SaaS. Passou a **betão + barro**: Plus Jakarta Sans na interface, paleta de cinzas frios com
   acento quente, densidade de aplicação (barra lateral 224px, barra superior 56px, cartões 16px,
   linhas 40px), grelha até 1400px e menu de conta. Ver [design-system.md](design-system.md).
+- Terceira iteração (18/09/2026): componentes ao estilo das apps modernas de referência (cantos
+  generosos, vidro fosco, chips de ícone, Space Grotesk) com paleta monocromática contemporânea —
+  branco, betão, preto e um toque de carvalho. Ação principal passa a preto/branco.

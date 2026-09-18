@@ -29,11 +29,11 @@ export default async function ProjectLayout({ children, params }: LayoutProps<"/
         <span className="truncate text-ink">{project.name}</span>
       </nav>
 
-      <header className="mb-5">
+      <header className="mb-6">
         <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2.5">
-              <h1 className="truncate text-xl font-semibold tracking-tight text-ink">{project.name}</h1>
+              <h1 className="truncate text-[28px] font-bold leading-tight tracking-tight text-ink">{project.name}</h1>
               <Badge tone={status.tone} dot>
                 {status.label}
               </Badge>
@@ -57,21 +57,21 @@ export default async function ProjectLayout({ children, params }: LayoutProps<"/
             </div>
           </div>
 
-          <dl className="flex shrink-0 divide-x divide-line rounded-lg border border-line bg-surface">
-            <div className="px-4 py-2">
+          <dl className="flex shrink-0 divide-x divide-line rounded-[18px] border border-line bg-surface shadow-[var(--shadow-card)]">
+            <div className="px-5 py-3">
               <dt className="label-tech">Início</dt>
               <dd className="mt-1 font-mono text-[13px] tabular-nums">{formatDate(project.start_date)}</dd>
             </div>
-            <div className="px-4 py-2">
+            <div className="px-5 py-3">
               <dt className="label-tech">Entrega</dt>
               <dd className="mt-1 font-mono text-[13px] font-medium tabular-nums">
                 {formatDate(project.due_date)}
               </dd>
             </div>
-            <div className="min-w-32 px-4 py-2">
+            <div className="min-w-36 px-5 py-3">
               <dt className="label-tech">Progresso</dt>
               <dd className="mt-1 flex items-center gap-2">
-                <Progress value={project.progress} className="w-14" />
+                <Progress value={project.progress} className="w-16" />
                 <span className="font-mono text-[13px] tabular-nums">{project.progress}%</span>
               </dd>
             </div>
@@ -80,7 +80,7 @@ export default async function ProjectLayout({ children, params }: LayoutProps<"/
       </header>
 
       <ProjectTabs tabs={tabs} />
-      <div className="mt-5">{children}</div>
+      <div className="mt-6">{children}</div>
     </>
   );
 }
