@@ -56,6 +56,21 @@ supabase/migrations/     esquema, RLS, triggers e modelos de fases
 supabase/templates/      e-mails de autenticação em português
 ```
 
+## Base de dados de produção
+
+| Campo | Valor |
+|-------|-------|
+| Projeto / base de dados Supabase | `ArquiGest` |
+| Palavra-passe | variável `SUPABASE_DB_PASSWORD` no ficheiro `.env.local` (não versionado) |
+
+A palavra-passe **não** fica no repositório. Está no `.env.local` desta máquina; guarde uma cópia
+num gestor de palavras-passe (Bitwarden, 1Password…) para não depender deste computador. Para ligar
+o projeto local ao Supabase na nuvem:
+
+```bash
+npx supabase link --project-ref <ref-do-projeto> -p "$SUPABASE_DB_PASSWORD"
+```
+
 ## Produção (Supabase na nuvem)
 
 1. Crie o projeto e aplique as migrações: `npx supabase link` e depois `npx supabase db push`.
